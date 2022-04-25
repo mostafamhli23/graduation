@@ -1,0 +1,62 @@
+<div class="card">
+    <div class="body">
+        <h2 class="text-center">Add Problem</h2>
+        <div class="container">
+            <form #f="ngForm" >
+
+                <input ngModel name="title" #title="ngModel" type="text" class="form-control" placeholder="Title"
+                    required>
+                <div class="alert alert-danger" *ngIf="title.errors?.required  && title.touched">
+                    title is required
+                </div>
+
+                <input ngModel name="code" #code="ngModel" type="text" class="form-control" placeholder="Code" required>
+                <div class="alert alert-danger" *ngIf="code.errors?.required  && code.touched">
+                    Code is required
+                </div>
+
+                <input ngModel name="rate" #rate="ngModel" type="text" class="form-control" placeholder="Rate" required>
+                <div class="alert alert-danger" *ngIf="rate.errors?.required  && rate.touched">
+                    Rate is required
+                </div>
+
+                <textarea ngModel name="text" #text="ngModel" type="text" class="form-control" placeholder="Text"
+                    required></textarea>
+                <div class="alert alert-danger" *ngIf="text.errors?.required  && text.touched">
+                    Code is required
+                </div>
+
+                <input ngModel name="numOfInputs" #numOfInputs="ngModel" type="number" class="form-control"
+                    placeholder="number of inputs" required>
+                <div class="alert alert-danger" *ngIf="numOfInputs.errors?.required  && numOfInputs.touched">
+                    numOfInputs is required
+                </div>
+                <ng-template let-a="aVariable" [ngTemplateOutletContext]="{ aVariable: numOfInputs.value }"
+                    [ngTemplateOutlet]="selfie" #selfie>
+                    <ul class="list-group">
+                        <li class="list-group-item" *ngFor="let n of numSequence(a); let i = index;">
+                            <div *ngIf="i != a ">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <label for="input">Input: </label>
+                                        <input ngModel name="in" #in="ngModel" type="text" class="form-control inputIn"
+                                            placeholder="input" required>
+                                        <button type="button" class="btn btn-primary buttonIn" (click)="inList(in.value)">Add
+                                            Input</button>
+                                        <label for="output">Output: </label>
+                                        <input ngModel name="out" #out="ngModel" type="text" class="form-control inputIn"
+                                            placeholder="output" required>
+                                        <button type="button" class="btn btn-primary buttonIn " (click)="outList(out.value)">Add
+                                            Output</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </ng-template>
+                <button class="btn btn-primary" [disabled]="f.invalid " (click)="addProblem(f)">Add problem</button>
+            </form>
+        </div>
+
+    </div>
+</div>

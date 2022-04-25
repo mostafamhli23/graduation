@@ -1,0 +1,20 @@
+
+.inputIn,.buttonIn{
+ 
+    display: inline-block;
+}
+.buttonIn{
+
+    width: 20%;
+    padding: 10px;
+    margin-left: 10px;
+}
+.inputIn{
+    width: 70%;
+    padding: 10px;
+    float:  left;
+    clear: right;
+}
+label{
+    display:block;
+}
